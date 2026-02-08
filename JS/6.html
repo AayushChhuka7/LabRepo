@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Menu with Class Toggle</title>
+    <style>
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        padding: 10px;
+        border: 2px solid black;
+        cursor: pointer;
+        width: 200px;
+      }
+
+      .submenu {
+        display: none;
+        color: black;
+      }
+
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Aayush Chhuka</h1>
+    <ul>
+      <li id="menuItem">
+        Main Menu
+        <ul class="submenu" id="submenu">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+        </ul>
+      </li>
+    </ul>
+
+    <script>
+      const menuItem = document.getElementById("menuItem");
+      const submenu = document.getElementById("submenu");
+
+      menuItem.addEventListener("click", function () {
+        submenu.classList.toggle("show");
+      });
+    </script>
+  </body>
+</html>
