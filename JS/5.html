@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Hover Example</title>
+    <style>
+      img {
+        width: 300px;
+        height: auto;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Aayush Chhuka</h1>
+    <img
+      src="background.jpg"
+      alt="background"
+      onmouseover="changeDescription('This is a  background!')"
+      onmouseout="changeDescription('Hover over')"
+    />
+    <p id="desc">Hover over</p>
+
+    <script>
+      function changeDescription(text) {
+        document.getElementById("desc").innerText = text;
+      }
+    </script>
+  </body>
+</html>

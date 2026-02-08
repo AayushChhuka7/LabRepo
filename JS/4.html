@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Color Changer</title>
+  </head>
+  <body>
+    <h1>Aayush Chhuka</h1>
+
+    <script>
+      const colors = ["red", "blue", "green", "yellow", "purple", "pink"];
+      let i = 0;
+
+      setInterval(function () {
+        document.body.style.backgroundColor = colors[i];
+        i = (i + 1) % colors.length;
+      }, 1000);
+    </script>
+  </body>
+</html>
