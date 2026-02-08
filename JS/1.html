@@ -8,17 +8,32 @@
   <body>
     <h1>Aayush Calculator</h1>
     <h1>Basic Arithmetic Function</h1>
-    <form name="form">
-      <input type="number" placeholder="operand" id="a" required />
-      <input type="number" placeholder="operand" id="b" required />
-      <button onclick="handleButton('Add')">Add</button>
-      <button onclick="handleButton('Sub')">Sub</button>
-      <button onclick="handleButton('Mul')">Mul</button>
-      <button onclick="handleButton('Div')">Div</button>
-      <button onclick="handleButton('Mod')">Mod</button>
-      <h1>Result:</h1>
-      <input type="text" id="result" />
-    </form>
+    <div>
+      <form name="form">
+        <input
+          type="number"
+          placeholder="operand"
+          id="a"
+          required
+          style="margin: 10px"
+        /><br />
+        <input
+          type="number"
+          placeholder="operand"
+          id="b"
+          required
+          style="margin: 10px"
+        /><br />
+        <button onclick="handleButton('Add')" style="margin: 10px">Add</button>
+        <button onclick="handleButton('Sub')" style="margin: 10px">Sub</button>
+        <button onclick="handleButton('Mul')" style="margin: 10px">Mul</button
+        ><br />
+        <button onclick="handleButton('Div')" style="margin: 10px">Div</button>
+        <button onclick="handleButton('Mod')" style="margin: 10px">Mod</button>
+        <h1>Result:</h1>
+        <input type="text" id="result" style="margin: 10px" />
+      </form>
+    </div>
 
     <script>
       function handleButton(op) {
