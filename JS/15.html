@@ -1,0 +1,28 @@
+<!-- An event in JavaScript is an action or occurrence that happens in the browser, which the program can respond to.
+ Examples include clicking a button, hovering over an element, pressing a key, or loading a page.
+JavaScript allows you to listen for events and then run code when they occur. 
+This is the foundation of interactive web pages. -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JavaScript Event Example</title>
+  </head>
+  <body>
+    <h1>JavaScript Event (Aayush Chhuka)</h1>
+
+    <button id="myButton">Click Me</button>
+
+    <p id="output"></p>
+
+    <script>
+      const button = document.getElementById("myButton");
+      const output = document.getElementById("output");
+
+      button.addEventListener("click", function () {
+        output.innerText = "Button was clicked!";
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Selector Form</title>
+    <style>
+      body {
+        color: purple;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Choose a Background Color(Aayush Chhuka)</h1>
+    <form>
+      <label>
+        <input
+          type="radio"
+          name="color"
+          value="green"
+          onclick="changeColor(this.value)"
+        />
+        Green
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="color"
+          value="red"
+          onclick="changeColor(this.value)"
+        />
+        Red
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="color"
+          value="blue"
+          onclick="changeColor(this.value)"
+        />
+        Blue
+      </label>
+      <label>
+        <input
+          type="radio"
+          name="color"
+          value="black"
+          onclick="changeColor(this.value)"
+        />
+        Black
+      </label>
+    </form>
+
+    <script>
+      function changeColor(color) {
+        document.body.style.backgroundColor = color;
+      }
+    </script>
+  </body>
+</html>

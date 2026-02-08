@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Name Example</title>
+  </head>
+  <body>
+    <h1>Enter Your Name</h1>
+    <form onsubmit="printReverse(event)">
+      <label>First Name: <input type="text" id="firstName" required /> </label
+      ><br /><br />
+      <label>Last Name: <input type="text" id="lastName" required /> </label
+      ><br /><br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2 id="output"></h2>
+
+    <script>
+      function printReverse(event) {
+        event.preventDefault();
+
+        const first = document.getElementById("firstName").value;
+        const last = document.getElementById("lastName").value;
+
+        document.getElementById("output").innerText = last + " " + first;
+      }
+    </script>
+  </body>
+</html>

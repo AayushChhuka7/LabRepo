@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Form Validation Example</title>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <form
+      id="myForm"
+      onsubmit="return validateForm();"
+      enctype="multipart/form-data"
+    >
+      <label>Name: <input type="text" id="name" required /></label><br /><br />
+
+      <label
+        >Gender:
+        <select id="gender" required>
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select> </label
+      ><br /><br />
+
+      <label>Hobbies: <input type="text" id="hobbies" required /></label
+      ><br /><br />
+
+      <label
+        >Appointment Date & Time:
+        <input type="datetime-local" id="appointment" required /> </label
+      ><br /><br />
+
+      <label
+        >Country:
+        <select id="country" required>
+          <option value="">Select</option>
+          <option value="Nepal">Nepal</option>
+          <option value="India">India</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+        </select> </label
+      ><br /><br />
+
+      <label
+        >Resume (PDF/Image, <2MB):
+        <input type="file" id="resume" required /> </label
+      ><br /><br />
+
+      <label>Email: <input type="email" id="email" required /></label
+      ><br /><br />
+
+      <label>Phone: <input type="text" id="phone" required /></label
+      ><br /><br />
+
+      <label>Password: <input type="password" id="password" required /></label
+      ><br /><br />
+
+      <label
+        >Confirm Password:
+        <input type="password" id="confirmPassword" required /></label
+      ><br /><br />
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <p id="output"></p>
+
+    <script>
+      function validateForm() {
+        const name = document.getElementById("name").value.trim();
+        const gender = document.getElementById("gender").value;
+        const hobbies = document.getElementById("hobbies").value.trim();
+        const appointment = new Date(
+          document.getElementById("appointment").value,
+        );
+        const country = document.getElementById("country").value;
+        const resume = document.getElementById("resume").files[0];
+        const email = document.getElementById("email").value.trim();
+        const phone = document.getElementById("phone").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+        const output = document.getElementById("output");
+
+        // Appointment date check
+        if (appointment < new Date()) {
+          alert("Appointment date cannot be in the past.");
+          return false;
+        }
+
+        // Resume validation
+        if (resume) {
+          const allowedTypes = ["application/pdf", "image/png", "image/jpeg"];
+          if (!allowedTypes.includes(resume.type)) {
+            alert("Resume must be a PDF or image file.");
+            return false;
+          }
+          if (resume.size > 2 * 1024 * 1024) {
+            alert("Resume file size must be less than 2MB.");
+            return false;
+          }
+        }
+
+        // Email validation
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(email)) {
+          alert("Invalid email format.");
+          return false;
+        }
+
+        // Phone validation (9********* or 01*******)
+        const phonePattern = /^(9\d{8}|01\d{7})$/;
+        if (!phonePattern.test(phone)) {
+          alert("Invalid phone number format.");
+          return false;
+        }
+
+        // Password validation
+        const passwordPattern =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+        if (!passwordPattern.test(password)) {
+          alert(
+            "Password must be at least 8 characters long with lowercase, uppercase, number, and symbol.",
+          );
+          return false;
+        }
+
+        // Confirm password
+        if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return false;
+        }
+
+        output.innerText = "Form submitted successfully!";
+        return true;
+      }
+    </script>
+  </body>
+</html>

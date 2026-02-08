@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Highlight Long Words</title>
+    <style>
+      .highlight {
+        background-color: red;
+        color: white;
+        padding: 2px;
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Word Highlighter(Aayush CHhuka)</h1>
+    <p id="text">
+      JavaScript programming allows developers to create interactive and dynamic
+      applications directly in the browser.
+    </p>
+
+    <button onclick="highlightLongWords()">Highlight</button>
+
+    <script>
+      function highlightLongWords() {
+        const paragraph = document.getElementById("text");
+        const words = paragraph.innerText.split(" ");
+        let highlightedText = "";
+
+        for (const word of words) {
+          if (word.length > 8) {
+            highlightedText += `<span class="highlight">${word}</span> `;
+          } else {
+            highlightedText += word + " ";
+          }
+        }
+
+        paragraph.innerHTML = highlightedText.trim();
+      }
+    </script>
+  </body>
+</html>

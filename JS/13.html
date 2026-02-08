@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Aayush Chhuka</h1>
+    <h2 id="clock">--:--:--</h2>
+    <script>
+      const clock = document.getElementById("clock");
+      function updateClock() {
+        let now = new Date();
+        const hour = now.getHours().toString().padStart(2, "0");
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const seconds = now.getSeconds().toString().padStart(2, "0");
+
+        const time = `${hour}:${minutes}:${seconds}`;
+        clock.textContent = time;
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+  </body>
+</html>
