@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Q2 - jQuery AJAX</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Q2 - AJAX using jQuery</h2>
+    <p>Aayush Chhuka</p>
+
+    <button id="loadBtn">Load Data via AJAX</button>
+    <div
+      id="result"
+      style="
+        margin-top: 15px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        display: none;
+      "
+    ></div>
+
+    <script>
+      $("#loadBtn").click(function () {
+        $.ajax({
+          url: "https://jsonplaceholder.typicode.com/posts/1",
+          type: "GET",
+          success: function (data) {
+            $("#result")
+              .html(
+                "<strong>Title:</strong> " +
+                  data.title +
+                  "<br><strong>Body:</strong> " +
+                  data.body,
+              )
+              .show();
+          },
+          error: function () {
+            $("#result").html("Error loading data.").show();
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

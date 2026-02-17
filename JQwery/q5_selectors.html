@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Q5 - jQuery Selectors</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .box {
+        padding: 8px;
+        margin: 5px;
+        border: 1px solid #999;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Q5 - jQuery Selectors</h2>
+    <p>Aayush Chhuka</p>
+
+    <!-- Elements for demonstration -->
+    <p id="para1" class="box">Paragraph 1 (id=para1)</p>
+    <p id="para2" class="box highlight">
+      Paragraph 2 (id=para2, class=highlight)
+    </p>
+    <p class="box">Paragraph 3 (class=box)</p>
+
+    <input type="text" placeholder="Text input" />
+    <input type="checkbox" checked /> Checkbox
+
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+    </ul>
+
+    <br />
+
+    <button onclick="byElement()">Element Selector (p)</button>
+    <button onclick="byId()">ID Selector (#para1)</button>
+    <button onclick="byClass()">Class Selector (.highlight)</button>
+    <button onclick="allSelector()">Universal Selector (*)</button>
+    <button onclick="firstChild()">:first-child</button>
+    <button onclick="lastChild()">:last-child</button>
+    <button onclick="evenOdd()">:even rows</button>
+    <button onclick="attrSelector()">Attribute Selector [type=text]</button>
+    <button onclick="checkedSelector()">:checked</button>
+    <button onclick="resetAll()">Reset</button>
+
+    <div
+      id="output"
+      style="margin-top: 15px; color: darkblue; font-weight: bold"
+    ></div>
+
+    <script>
+      // 1. Element Selector
+      function byElement() {
+        $("p").css("background", "yellow");
+        $("#output").text("Element Selector $('p') - selects all <p> elements");
+      }
+
+      // 2. ID Selector
+      function byId() {
+        resetAll();
+        $("#para1").css("background", "lightblue");
+        $("#output").text(
+          "ID Selector $('#para1') - selects element with id='para1'",
+        );
+      }
+
+      // 3. Class Selector
+      function byClass() {
+        resetAll();
+        $(".highlight").css("background", "lightgreen");
+        $("#output").text(
+          "Class Selector $('.highlight') - selects elements with class='highlight'",
+        );
+      }
+
+      // 4. Universal Selector
+      function allSelector() {
+        $("*").css("border", "1px dashed red");
+        $("#output").text("Universal Selector $('*') - selects all elements");
+      }
+
+      // 5. :first-child
+      function firstChild() {
+        resetAll();
+        $("li:first-child").css("background", "orange");
+        $("#output").text(":first-child - selects first <li> element");
+      }
+
+      // 6. :last-child
+      function lastChild() {
+        resetAll();
+        $("li:last-child").css("background", "violet");
+        $("#output").text(":last-child - selects last <li> element");
+      }
+
+      // 7. :even
+      function evenOdd() {
+        resetAll();
+        $("li:even").css("background", "lightcoral");
+        $("#output").text(
+          ":even - selects even indexed <li> elements (0-based)",
+        );
+      }
+
+      // 8. Attribute Selector
+      function attrSelector() {
+        resetAll();
+        $("input[type='text']").css("border", "3px solid blue");
+        $("#output").text(
+          "Attribute Selector $('input[type=text]') - selects input of type text",
+        );
+      }
+
+      // 9. :checked
+      function checkedSelector() {
+        resetAll();
+        var isChecked = $("input:checked").is(":checked");
+        $("#output").text(":checked - checkbox is checked: " + isChecked);
+      }
+
+      // Reset
+      function resetAll() {
+        $("p, li").css({ background: "", border: "" });
+        $("input").css("border", "");
+        $("*").css("border", "");
+      }
+    </script>
+  </body>
+</html>

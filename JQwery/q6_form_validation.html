@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Q6 - Form Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      label {
+        display: block;
+        margin-top: 12px;
+        font-weight: bold;
+      }
+      input,
+      select {
+        width: 300px;
+        padding: 6px;
+        margin-top: 4px;
+      }
+      input[type="checkbox"],
+      input[type="radio"] {
+        width: auto;
+      }
+      .error {
+        color: red;
+        font-size: 13px;
+        display: block;
+      }
+      button {
+        margin-top: 20px;
+        padding: 8px 20px;
+      }
+      .success {
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Q6 - Form with Validation</h2>
+    <p>Aayush Chhuka</p>
+    >
+
+    <form id="myForm">
+      <!-- Name -->
+      <label>Name:</label>
+      <input type="text" id="name" />
+      <span class="error" id="nameErr"></span>
+
+      <!-- Gender -->
+      <label>Gender:</label>
+      Male <input type="radio" name="gender" value="male" /> Female
+      <input type="radio" name="gender" value="female" /> Other
+      <input type="radio" name="gender" value="other" />
+      <span class="error" id="genderErr"></span>
+
+      <!-- Phone Number -->
+      <label>Phone Number:</label>
+      <input type="text" id="phone" placeholder="10-digit number" />
+      <span class="error" id="phoneErr"></span>
+
+      <!-- Hobbies -->
+      <label>Hobbies:</label>
+      Reading <input type="checkbox" name="hobby" value="reading" /> Sports
+      <input type="checkbox" name="hobby" value="sports" /> Music
+      <input type="checkbox" name="hobby" value="music" />
+      <span class="error" id="hobbyErr"></span>
+
+      <!-- Appointment Date & Time -->
+      <label>Appointment Date & Time:</label>
+      <input type="datetime-local" id="appointment" />
+      <span class="error" id="appointmentErr"></span>
+
+      <!-- Country -->
+      <label>Country:</label>
+      <select id="country">
+        <option value="">--Select Country--</option>
+        <option value="nepal">Nepal</option>
+        <option value="india">India</option>
+        <option value="usa">USA</option>
+        <option value="uk">UK</option>
+      </select>
+      <span class="error" id="countryErr"></span>
+
+      <!-- Resume -->
+      <label>Resume (PDF, Word, or Image - max 2MB):</label>
+      <input type="file" id="resume" />
+      <span class="error" id="resumeErr"></span>
+
+      <!-- Email -->
+      <label>Email:</label>
+      <input type="text" id="email" />
+      <span class="error" id="emailErr"></span>
+
+      <!-- Password -->
+      <label>Password:</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Min 8 chars, upper, lower, number, symbol"
+      />
+      <span class="error" id="passwordErr"></span>
+
+      <!-- Confirm Password -->
+      <label>Confirm Password:</label>
+      <input type="password" id="confirmPassword" />
+      <span class="error" id="confirmErr"></span>
+
+      <br />
+      <button type="submit">Submit</button>
+      <span id="successMsg" class="success"></span>
+    </form>
+
+    <script>
+      $("#myForm").submit(function (e) {
+        e.preventDefault();
+        var valid = true;
+
+        // Clear all errors
+        $(".error").text("");
+        $("#successMsg").text("");
+
+        // 1. Name - required
+        var name = $("#name").val().trim();
+        if (name === "") {
+          $("#nameErr").text("Name is required.");
+          valid = false;
+        }
+
+        var gender = $("input[name='gender']:checked").val();
+        if (!gender) {
+          $("#genderErr").text("Gender is required.");
+          valid = false;
+        }
+
+        var phone = $("#phone").val().trim();
+        if (phone === "") {
+          $("#phoneErr").text("Phone number is required.");
+          valid = false;
+        } else if (!/^\d{10}$/.test(phone)) {
+          $("#phoneErr").text("Phone number must be exactly 10 digits.");
+          valid = false;
+        }
+
+        var hobbies = $("input[name='hobby']:checked").length;
+        if (hobbies === 0) {
+          $("#hobbyErr").text("Select at least one hobby.");
+          valid = false;
+        }
+
+        var appointment = $("#appointment").val();
+        if (appointment === "") {
+          $("#appointmentErr").text("Appointment date & time is required.");
+          valid = false;
+        } else {
+          var selectedDate = new Date(appointment);
+          var now = new Date();
+          if (selectedDate < now) {
+            $("#appointmentErr").text(
+              "Appointment date cannot be in the past.",
+            );
+            valid = false;
+          }
+        }
+
+        var country = $("#country").val();
+        if (country === "") {
+          $("#countryErr").text("Country is required.");
+          valid = false;
+        }
+
+        var resumeInput = $("#resume")[0];
+        if (resumeInput.files.length === 0) {
+          $("#resumeErr").text("Resume is required.");
+          valid = false;
+        } else {
+          var file = resumeInput.files[0];
+          var allowedTypes = [
+            "application/pdf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+          ];
+          var maxSize = 2 * 1024 * 1024;
+
+          if (!allowedTypes.includes(file.type)) {
+            $("#resumeErr").text("Resume must be PDF, MS Word, or image file.");
+            valid = false;
+          } else if (file.size > maxSize) {
+            $("#resumeErr").text("File size must be less than 2 MB.");
+            valid = false;
+          }
+        }
+
+        var email = $("#email").val().trim();
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "") {
+          $("#emailErr").text("Email is required.");
+          valid = false;
+        } else if (!emailRegex.test(email)) {
+          $("#emailErr").text("Enter a valid email address.");
+          valid = false;
+        }
+
+        var password = $("#password").val();
+        var passRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=])[A-Za-z\d@$!%*?&#^()_\-+=]{8,}$/;
+        if (password === "") {
+          $("#passwordErr").text("Password is required.");
+          valid = false;
+        } else if (!passRegex.test(password)) {
+          $("#passwordErr").text(
+            "Password must be at least 8 characters with uppercase, lowercase, number, and symbol.",
+          );
+          valid = false;
+        }
+
+        var confirmPassword = $("#confirmPassword").val();
+        if (confirmPassword === "") {
+          $("#confirmErr").text("Confirm Password is required.");
+          valid = false;
+        } else if (password !== confirmPassword) {
+          $("#confirmErr").text("Passwords do not match.");
+          valid = false;
+        }
+
+        if (valid) {
+          $("#successMsg").text("Form submitted successfully!");
+        }
+      });
+    </script>
+  </body>
+</html>

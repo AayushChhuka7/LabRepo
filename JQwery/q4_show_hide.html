@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Q4 - Show and Hide</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Q4 - Show and Hide a Div using jQuery</h2>
+    <p>Aayush Chhuka</p>
+
+    <button id="showBtn">Show</button>
+    <button id="hideBtn">Hide</button>
+    <button id="toggleBtn">Toggle</button>
+
+    <br /><br />
+
+    <div
+      id="myDiv"
+      style="width: 300px; height: 100px; background: lightgreen; padding: 10px"
+    >
+      This is the div that will be shown or hidden!
+    </div>
+
+    <script>
+      $("#showBtn").click(function () {
+        $("#myDiv").show();
+      });
+
+      $("#hideBtn").click(function () {
+        $("#myDiv").hide();
+      });
+
+      $("#toggleBtn").click(function () {
+        $("#myDiv").toggle();
+      });
+    </script>
+  </body>
+</html>

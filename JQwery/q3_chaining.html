@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Q3 - Method Chaining</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Q3 - Method Chaining in jQuery</h2>
+    <p>Aayush Chhuka</p>
+
+    <div
+      id="box"
+      style="width: 200px; height: 100px; background: lightblue; padding: 10px"
+    >
+      Original Box
+    </div>
+
+    <br />
+    <button id="chainBtn">Apply Chaining</button>
+
+    <script>
+      $("#chainBtn").click(function () {
+        $("#box")
+          .css("background", "orange")
+          .css("color", "white")
+          .text("Changed with Chaining!")
+          .fadeOut(1000)
+          .fadeIn(1000);
+      });
+    </script>
+  </body>
+</html>

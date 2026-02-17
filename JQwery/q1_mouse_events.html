@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Q1 - Mouse Events</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h2>Q1 - mouseenter & mouseleave</h2>
+    <p>Aayush Chhuka</p>
+
+    <div>
+      <img
+        id="myImg"
+        src="background.jpg"
+        alt="Sample Image"
+        style="cursor: pointer; width: 500px"
+      />
+      <p id="desc">This is the original description of the image.</p>
+    </div>
+
+    <script>
+      $("#myImg").mouseenter(function () {
+        $("#desc").text("Mouse entered the image!");
+      });
+
+      $("#myImg").mouseleave(function () {
+        $("#desc").text("Mouse left the image. Back to original description.");
+      });
+    </script>
+  </body>
+</html>
